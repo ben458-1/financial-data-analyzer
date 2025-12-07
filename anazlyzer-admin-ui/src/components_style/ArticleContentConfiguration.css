@@ -1,0 +1,12 @@
+.centered-tabs .ant-tabs-nav {
+    display: flex;
+    justify-content: center;
+    /* Center the tab items */
+    flex-grow: 1;
+    /* Allow the nav to grow */
+}
+
+.centered-tabs .ant-tabs-nav .ant-tabs-nav-wrap {
+    justify-content: center;
+    /* Center the tab items */
+}

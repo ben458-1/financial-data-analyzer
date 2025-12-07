@@ -1,0 +1,6 @@
+Given the following article, extract the comments made by named spokespersons or attributed to unnamed sources. Also extract the necessary details about the author
+
+A "comment" includes direct quotes, opinions, statements of intent, and policy announcements made by a spokesperson or source, both of direct and indirect speech.  Do NOT include actions.
+    
+Article:
+The author is

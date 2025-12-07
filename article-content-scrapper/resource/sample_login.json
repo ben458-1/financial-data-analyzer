@@ -1,0 +1,15 @@
+{
+	"url": "https://example2.com/login",
+	"username_field": {
+		"type": "css",
+		"name": "user_id"
+	},
+	"password_field": {
+		"type": "id",
+		"name": "pass"
+	},
+	"login_button": {
+		"type": "css_selector",
+		"name": ".login-button"
+	}
+}

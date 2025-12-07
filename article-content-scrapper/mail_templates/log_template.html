@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: auto;
+        }
+        h1 {
+            color: #d9534f;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        .error-details {
+            background-color: #f9f9f9;
+            border-left: 4px solid #d9534f;
+            padding: 10px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Error Notification</h1>
+        <p>Dear Team,</p>
+        <p>A critical error has occurred in the application. Please find the details below:</p>
+
+        <h2>Error Details</h2>
+        <div class="error-details">
+            <p><strong>Newspaper ID:</strong> {{err.newspaper_id}}</p>
+            <p><strong>Newspaper: </strong><a href={{err.newspaper_url}}>{{err.newspaper_name}}</a></p>
+            <p><strong>Article ID:</strong>{{err.article_id}}</p>
+            <p><strong>Article: </strong><a href={{err.article_url}}>{{err.article_url}}</a></p>
+            <p><strong>Error Due To:</strong> {{err.message}}</p>
+            <p><strong>Line:</strong> {{err.lineno}}</p>
+            <p><strong>Occurrence Time:</strong> {{err.time}}</p>
+            <p><em>For more details, please refer to the stack trace below👇🏼👇🏼.</em></p>
+            <p><strong>Stacktrace:</strong></p>
+            <pre>{{err.stacktrace}}</pre>
+        </div>
+
+        <p>Please investigate this issue at your earliest convenience.</p>
+        <p>Thank you!</p>
+
+        <div class="footer">
+            <p>&copy; {{year}} Euroland India Pvt Limited. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

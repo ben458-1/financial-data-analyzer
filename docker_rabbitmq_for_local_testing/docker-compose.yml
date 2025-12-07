@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  rabbitmq:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+      RABBITMQ_DEFAULT_VHOST: /
+    ports:
+      - "5672:5672"    # RabbitMQ messaging port
+      - "15672:15672"  # RabbitMQ management UI port
+    volumes:
+      - ./data:/var/lib/rabbitmq  # Persistent storage for RabbitMQ
+    #  - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf  # Custom configuration (optional)
+    restart: unless-stopped

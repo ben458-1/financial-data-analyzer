@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Missing Configuration Alert</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .email-container {
+      min-width: 500px;
+      margin: auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      color: #d35400;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #555555;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+    .config-box {
+      background-color: #fff8e6;
+      border-left: 4px solid #f39c12;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 4px;
+    }
+    ul {
+      margin: 10px 0 0 20px;
+      padding: 0;
+    }
+    li {
+      font-size: 14px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 12px;
+      color: #999999;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <h1>🚨 Missing Configuration Alert</h1>
+
+    <p>Dear Team,</p>
+    <p>
+      Our monitoring system has detected missing configuration fields in the following articles from <strong>{{ context.newspaper_name }}</strong> (ID: {{ context.newspaper_id }}). Please review the details below:
+    </p>
+
+    <div class="config-box">
+      <p><strong>🔧 Missing Configuration Fields:</strong></p>
+      <ul>
+        {% for field in context.missing_config %}
+          <li>{{ field | capitalize }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <p><strong>📄 Affected Articles:</strong></p>
+    <ul>
+      {% for article in context.articles %}
+        <li>
+          <a href="{{ article.article_url }}" target="_blank" rel="noopener noreferrer">{{ article.article_url }}</a> (ID: {{ article.article_id }})
+        </li>
+      {% endfor %}
+    </ul>
+
+    <p>Please update the missing configurations at your earliest convenience to ensure proper processing.</p>
+
+    <p>Best regards,<br/>Monitoring System</p>
+
+    <div class="footer">
+      &copy; {{ context.year }} Euroland India Pvt Limited. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

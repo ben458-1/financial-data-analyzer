@@ -1,0 +1,18 @@
+.ant-menu-item-selected {
+    color: #3D8D7A !important;
+}
+
+.ant-menu-submenu-selected .ant-menu-submenu-title {
+    color: #3D8D7A !important;
+}
+
+body .ant-modal-root {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    overflow: visible;
+    pointer-events: auto;
+}

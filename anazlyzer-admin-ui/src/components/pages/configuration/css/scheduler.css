@@ -1,0 +1,13 @@
+
+/* Switch ON = Table */
+.color-switch.ant-switch-checked {
+    
+    background-color: #004483 !important;
+    /* Blue for Table */
+}
+
+/* Switch OFF = Calendar */
+.color-switch:not(.ant-switch-checked) {
+    background-color: #265f0a !important;
+    /* Green for Calendar */
+}

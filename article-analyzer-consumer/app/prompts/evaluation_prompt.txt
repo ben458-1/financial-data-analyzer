@@ -1,0 +1,97 @@
+You are an evaluator comparing two structured outputs from an information extraction task on a financial article:
+
+- One result is from a detailed prompt (called the Base Prompt)
+- One result is from a schema-based extraction method (called the Pydantic result)
+
+Both extractions are from the same article.
+
+Your task is to evaluate how accurately the **Pydantic result** matches the **Base Prompt result**, which is considered the ground truth.
+
+---
+
+Evaluate the following parameters:
+- attribution
+- attribution_type
+- comments
+- designation
+
+### Instructions:
+
+1. Compare each parameter between the Base Prompt result and the Pydantic result.
+2. Score each parameter as:
+   - 1.0 if it matches completely
+   - 0.5 if it partially matches (e.g., some parts are missing, but the intent is captured)
+   - 0.0 if it does not match or is incorrect
+3. Use a **Chain of Thought (CoT)** explanation to justify the score for each parameter.
+4. Ensure each and every parameter is evaluated.
+5. Structure doesn't matter — only content accuracy is considered.
+6. Calculate the average score (`final_score`) by taking the arithmetic mean of the scores assigned in step 2 for the four parameters: `attribution`, `attribution_type`, `comments`, and `designation`. **Formula: final_score = (score_attribution + score_attribution_type + score_comments + score_designation) / 4**.
+7. Ensure accurate and justifiable scoring. Do not guess scores.
+8. Evaluate carefully — do not inflate scores without evidence.
+
+---
+
+## Part 1: JSON Output Generation (Internal Step)
+
+Mentally (or as an internal step), generate a JSON array following this structure based on your evaluation. Ensure the `final_score` is calculated precisely as the average of the four preceding scores using the formula from Instruction 6
+[
+  {
+    "attribution": {
+      "score": float,
+      "reasoning": str
+    },
+    "attribution_type": {
+      "score": float,
+      "reasoning": str
+    },
+    "comments": {
+      "score": float,
+      "reasoning": str
+    },
+    "designation": {
+      "score": float,
+      "reasoning": str
+    },
+    "final_score": float
+  }
+]
+
+---
+
+## Part 2: Tabular Output Generation (Internal Step)
+
+Also, mentally (or as an internal step), generate the following table separately using plain text formatting, based on your evaluation:
+
+--- Table (with scores) -----
+1. Accuracy (Final Score × 10)         x/10
+2. Relevance Score                     x/10  # (You will need to determine this based on overall fit)
+3. Hallucination Score (inverse)       x/10  # (You will need to determine this based on extraneous info)
+
+Be objective, consistent, and base the evaluation only on what’s present in the Base Prompt result.
+
+---
+
+## Part 3: Final Output Format Constraint (!!! STRICTLY ENFORCED !!!)
+
+**Your entire response MUST be a single, valid JSON object and NOTHING ELSE.** No text before the opening `{` or after the closing `}`. No extra explanations, summaries, or scores outside this JSON structure.
+
+This final JSON object MUST have exactly two keys:
+
+1.  `"accuracy_score_10"`:
+    *   **Value Type:** A **single number**.
+    *   **Calculation:** This number **MUST** be calculated using the **exact deterministic formula**: `final_score * 10`.
+    *   **Source:** The `final_score` value used **MUST** be the precise average score calculated and stored in the JSON array during the internal step of Part 1.
+    *   **Example:** If the `final_score` calculated in Part 1 is `0.875`, the value for this key **MUST** be exactly `8.75`.
+    *   **Placement:** This `accuracy_score_10` key is the **ONLY** place where this final scaled score (out of 10) should appear as a standalone number in your entire output.
+
+2.  `"full_evaluation_text"`:
+    *   **Value Type:** A **single JSON string**.
+    *   **Content:** This string **MUST** contain the complete text of BOTH the JSON array generated in Part 1 AND the plain text table generated in Part 2.
+    *   **Formatting:** Preserve the exact formatting, including JSON structure, newlines (`\n`), and the table layout, **within this single string value**.
+
+**Example of the REQUIRED EXACT output format:**
+```json
+{
+  "accuracy_score_10": 8.75,
+  "full_evaluation_text": "[{\n    \"attribution\": {\n      \"score\": 1.0,\n      \"reasoning\": \"...\"\n    },\n    \"attribution_type\": {\n      \"score\": 1.0,\n      \"reasoning\": \"...\"\n    },\n    \"comments\": {\n      \"score\": 0.5,\n      \"reasoning\": \"...\"\n    },\n    \"designation\": {\n      \"score\": 1.0,\n      \"reasoning\": \"...\"\n    },\n    \"final_score\": 0.875\n  }\n]\n\n--- Table (with scores) -----\n1. Accuracy (Final Score × 10)         8.75/10\n2. Relevance Score                     9.0/10\n3. Hallucination Score (inverse)       9.0/10"
+}

@@ -1,0 +1,102 @@
+<!-- system_error_alert_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>System Error Notification</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f8fa;
+            margin: 0;
+            padding: 25px;
+        }
+
+        .container {
+            min-width: 400px;
+            margin: auto;
+            background-color: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 24px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 18px;
+            margin-top: 30px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .error-section {
+            background-color: #fef2f2;
+            border-left: 5px solid #d32f2f;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .error-section p {
+            margin: 6px 0;
+            font-size: 14px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 13px;
+            color: #c7254e;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚠️ System Error Notification</h1>
+        <p>Dear Team,</p>
+        <p>An unexpected exception has been encountered in the system. Please find the details below:</p>
+
+        <h2>🛠 Error Information</h2>
+        <div class="error-section">
+            <p><strong>Error Type:</strong> {{ context.type }}</p>
+            <p><strong>Component:</strong> {{ context.component }}</p>
+            <p><strong>Message:</strong> {{ context.message }}</p>
+            <p><strong>Occurred At:</strong> {{ context.time }}</p>
+            <p><strong>Environment:</strong> {{ context.environment }}</p>
+        </div>
+
+        <h2>📄 Stack Trace</h2>
+        <pre>{{ context.stacktrace }}</pre>
+
+        <p>Please investigate this issue at your earliest convenience.</p>
+        <p>Thank you for your attention.</p>
+
+        <div class="footer">
+            &copy; {{ year }} Euroland India Pvt. Ltd. | This is an automated alert.
+        </div>
+    </div>
+</body>
+</html>

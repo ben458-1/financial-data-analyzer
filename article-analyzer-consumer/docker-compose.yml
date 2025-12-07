@@ -1,0 +1,16 @@
+services:
+  article-analyzer-service:
+    build:
+      context: .              # Path to Dockerfile
+      dockerfile: Dockerfile
+    image: article-analyzer-img:1.0.2
+    container_name: article-analyzer
+    env_file:
+      - .env
+
+    networks:
+      - article_analyzer_network
+
+networks:
+  article_analyzer_network:
+    driver: bridge

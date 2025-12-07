@@ -1,0 +1,176 @@
+Read the following text carefully and you should return the answer in detail as explained below.
+The text is extracted from a financial magazine/Investor relations magazine.
+You should return result, where it contains details of
+
+1. attribution
+2. attribution_type
+3. designation
+4. comments
+
+------
+Instructions:
+  
+1. attribution - The name of the person or organization making the comment.  
+  Find the name of the person properly for each and every comment in the article, if a comment is made by someone whose name is not mentioned then fill the name attribute as source
+ 
+  Example-1: “After the first few days of confusion and market volatility, life inside the organisation continued as normal,” said an Adani executive who asked not to be named
+  name: source
+ 
+  Example-2:
+  “Ukraine is playing a key role for central and eastern Europe’s security of gas supply this winter,” said Natasha Fielding, head of European gas pricing at Argus Media
+  name: Natasha Fielding
+
+  There may be instances where the name of the spokesperson be mentioned in full in some parts of the article and in contracted form in other parts of the article, in such a case, please follow context and do proper name extraction.
+
+  Example-1: "Shridhar Vembu, CEO of Zoho corp says that, AI has greater potential to bring about a transformation in the IT industry. Vembu also says that they have started the hiring process for new AI talents.
+  name: Shridhar Vembu
+ 
+ 
+2. attribution_type -   Classify each attribution as one of the following - author/spokesperson/source
+  This parameter should only give output from the any of the three clauses (author/spokesperson/source)
+ 
+  Example-1: LVMH does not break down financial performance for any of its 75 plus brands but the group said the division’s performance “reflect[ed] the exceptional performance achieved by Sephora worldwide” as well as recovery in international travel.
+  name: NA
+  designation: NA
+  spk_type: source
+ 
+  Example-2: A senior analyst in EY reported this quarter's financials
+  name: NA
+  designation: senior analyst
+  spk_type: source
+ 
+  Example-3: "I have never been to Paris before," admitted Emily.
+  name: Emily
+  designation: NA
+  spk_type: spokesperson
+ 
+  Example:4
+  Luxury fashion brands are expected to face increasing competition in the Chinese market, given the shifting preferences of younger consumers and the rise of homegrown designers.
+  name: NA
+  designation: NA
+  spk_type: author
+ 
+  Example:5
+  The recent merger between two major telecom giants is likely to reshape the competitive landscape, with potential benefits for consumers in terms of pricing and network coverage.
+  name: NA
+  designation: NA
+  spk_type: author
+
+
+3. designation - designation of the spokesperson in the organization
+  Extract the present designation. If no designation is present, the designation value is N.A  
+ 
+  Example_1: Alice, who heads Nyka commented that....
+  designation: head
+ 
+  Example_2: Sir Max Hill KC, the former director of public prosecutions for England and Wales, has been criticised by the Whitehall appointments watchdog for failing adequately to consult it before his move to a US law firm.
+  designation: NA  
+
+
+4. comment_details - (list of comments)
+ 
+   Extract the comment. Make sure the comment in extracted fully and not miss any words made.
+   Go through the entire article understand if any comments are made and Extract all the comments made by the spokesperson/author/source.
+   Extract every comment made by the spokesperson/author/source.
+   - Eg-1: When there are reporting verbs or if the speech is reported.
+
+                    Follow the words after reporting verbs. Extract the full reported speech.
+
+                    Eg: The analyst pointed out that there were significant challenges in setting up research environments. He says the idea is "obsolete". He finds them silly
+                    output:
+                    name: NA
+                    designation: NA
+                    organisation: NA
+                    comment: analyst pointed out that there were significant challenges in setting up research environments, he says the idea is obsolete, he finds them silly.
+ 
+   - Eg-2: When there are reported sentenced with only a few words with quotes.
+
+                    Eg-1: Still, as Zhang and Zuo from Tsinghua point out, across the SOE sector opacity remains a problem. “Very few” SOEs publicly disclose their exact emissions data. And coal was still responsible for about 60 per cent of the country’s actual generated electricity in 2023.
+                    across the SOE sector opacity remains a problem. “Very few” SOEs publicly disclose their exact emissions data. And coal was still responsible for about 60 per cent of the country’s actual generated electricity in 2023.
+                   
+                     name: Zhang
+                     designation: NA
+                     organisation: Tsinghua
+                     comment: across the SOE sector opacity remains a problem. “Very few” SOEs publicly disclose their exact emissions data. And coal was still responsible for about 60 per cent of the country’s actual generated electricity in 2023.
+ 
+                     name: Zuo
+                     designation: NA
+                     organisation: Tsinghua
+                     comment: across the SOE sector opacity remains a problem. “Very few” SOEs publicly disclose their exact emissions data. And coal was still responsible for about 60 per cent of the country’s actual generated electricity in 2023.
+ 
+                     Eg-2:Simeng Deng, also of Rystad, says that providing secure electricity supply and avoiding blackouts remains paramount. “Reliability is the most important thing. They don’t want to make their portfolios too risky,” she says. Still, she adds: “Don’t call them dinosaurs anymore.”
+                     comment: providing secure electricity supply and avoiding blackouts remains paramount. “Reliability is the most important thing. They don’t want to make their portfolios too risky”. Don’t call them dinosaurs anymore.
+ 
+                     name: Simeng Deng
+                     designation: NA
+                     organisation: Rystad
+                     comment: providing secure electricity supply and avoiding blackouts remains paramount. “Reliability is the most important thing. They don’t want to make their portfolios too risky”. Don’t call them dinosaurs anymore.
+                   
+ 
+    - Eg-3: Extract the reporting that includes 'wrote'
+                  Eg: The CEO wrote on X that, there is a significant surge in customers after the launch of phone (3a)
+                  name: NA
+                  designation: CEO
+                  organisation: NA
+                  comment: there is a significant surge in customers after the launch of phone (3a)
+ 
+    - Eg-4: No partial comment extraction
+                Eg: While European and US politicians complain about Beijing’s generous state support for manufacturing of clean tech products, Dong points to benefits stemming from China’s centralised command and control structure as well as governance continuity.
+                When Beijing ordered the SOEs to pivot towards renewables, “they do it”, she said. Dong argued that among western countries,there were barriers to decarbonisation in the “myopic short-termism” of financial markets, the struggle to establish carbon pricing and policy disruptions when governments changed.
+               
+                name: NA
+                designation: politician
+                organisation: European
+                comment: complain about Beijing’s generous state support for manufacturing of clean tech products
+ 
+                name: NA
+                designation: politician
+                organisation: US
+                comment: complain about Beijing’s generous state support for manufacturing of clean tech products
+ 
+                name: Dong
+                designation: NA
+                organisation: NA
+                comment: points out benefits stemming from China’s centralised command and control structure as well as governance continuity. When Beijing ordered the SOEs to pivot towards renewables, “they do it”.
+               
+                name: Dong
+                designation: NA
+                organisation: NA
+                comment: argued that among western countries, there were barriers to decarbonisation in the “myopic short-termism” of financial markets, the struggle to establish carbon  pricing and policy disruptions when governments changed.
+ 
+    - Eg-5: reported comment with a tense
+                 structure person + tense form + reproting verb + speech(reported)
+                 Eg: The minister had stated that the government was taking measures to curb inflation.
+                 name: NA
+                 designation: Minister
+                 organisation: NA
+                 comment: The government was taking measures to curb inflation.
+
+
+
+INSTRUCTIONS
+
+Ensure that:
+- Each person or organization appears **only once** in the output.
+- All comments made by them are grouped together under the `comments` list.
+
+Return the output in **valid JSON** format.
+
+Eg: 
+
+[
+   { 
+    attribution: George,
+    attribution_type: Spokesperson,
+    designation: CEO
+    comments: [
+    a,b,c
+    ]
+    },
+    
+    {...}
+
+]
+
+
+Return the output in **valid JSON** format.

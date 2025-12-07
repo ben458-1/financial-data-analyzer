@@ -1,0 +1,42 @@
+
+/* Switch ON = Table */
+.color-switch.ant-switch-checked {
+    
+    background-color: #004483 !important;
+    /* Blue for Table */
+}
+
+/* Switch OFF = Calendar */
+.color-switch:not(.ant-switch-checked) {
+    background-color: #265f0a !important;
+    /* Green for Calendar */
+}
+
+.color-switch.ant-switch {
+    width: 100%; /* Adjust as needed for text */
+    height: 32px;
+    border-radius: 4px !important;
+    padding: 0 !important;
+  }
+
+/* Square the switch handle */
+.color-switch .ant-switch-handle {
+    width: 28px;
+    height: 28px;
+    top: 2px;
+    border-radius: 4px !important;
+  }
+  
+  /* Animate handle transition */
+  .color-switch .ant-switch-handle::before {
+    border-radius: 4px;
+  }
+  
+  /* Optional: center label text better */
+  .color-switch .ant-switch-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    padding: 0 8px;
+  }

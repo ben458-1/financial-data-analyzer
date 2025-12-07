@@ -1,0 +1,22 @@
+services:
+  article-content-scrapper-service:
+    build:
+      context: .              # Path to Dockerfile
+      dockerfile: Dockerfile
+    image: article-content-scrapper-image:1.0.1
+    container_name: article-content-scrapper
+    env_file:
+      - .env
+    volumes:
+      - /e/spokesperson_failed_articles:/article-content-scrapper/failed_articles
+
+    networks:
+      - spokesperson_article_scrapper_network
+      
+    ports:
+      - "9005:9005"
+
+networks:
+  spokesperson_article_scrapper_network:
+    driver: bridge
+    #external: true

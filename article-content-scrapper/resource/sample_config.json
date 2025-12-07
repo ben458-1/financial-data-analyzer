@@ -1,0 +1,99 @@
+{
+  "body": [
+    {
+      "type": "css",
+      "name": "#article-content > div:nth-child(1) > div"
+    }
+  ],
+  "newspaperID": 114,
+  "excludes": [
+    {
+      "type": "css",
+      "name": ".column.small-5"
+    }
+  ],
+  "language": "English",
+  "mainsector": [
+    {
+      "type": "tagname",
+      "name": "body"
+    }
+  ],
+  "section": [
+    {
+      "type": "css",
+      "name": ".bb-nav-categories__link"
+    }
+  ],
+  "trendingsStories": [],
+  "header": [
+    {
+      "type": "css",
+      "name": "#content > div > div > h1"
+    }
+  ],
+  "images": [
+    {
+      "type": "tagname",
+      "name": "img"
+    }
+  ],
+  "author": [
+    {
+      "type": "css",
+      "name": "#content > div> div > div > div > div > div > span > a"
+    },
+    {
+      "type": "css",
+      "name": ".article-byline-author"
+    }
+  ],
+  "keywords": [
+    {
+      "type": "css",
+      "name": ".text.size-2x-small.line-height-large"
+    },
+    {
+      "type": "css",
+      "name": ".text.size-1x-small.font-accent.color-brand.all-caps"
+    },
+    {
+      "type": "css",
+      "name": "._11XURygs._1mXB4jjD"
+    },
+    {
+      "type": "css",
+      "name": ".noopener.noreferrer"
+    },
+    {
+      "type": "css",
+      "name": ".article-primary-tag"
+    },
+    {
+      "type": "css",
+      "name": ".article-section-tag"
+    }
+  ],
+  "paragraphs": [
+    {
+      "type": "css",
+      "name": ".column.small-12.medium-10.medium-offset-1.large-offset-2.text.size-2x-large.bold.OmZJ8NL1"
+    }
+  ],
+  "date": [
+    {
+      "type": "css",
+      "name": ".sc-1b197338-6.eCBAKW"
+    },
+    {
+      "type": "css",
+      "name": ".article-byline-time.article-byline-item"
+    }
+  ],
+  "betweenWait": 2000,
+  "login": 0,
+  "recommendations": [],
+  "isActive": 1,
+  "id": 114,
+  "name": "Fortune"
+}
